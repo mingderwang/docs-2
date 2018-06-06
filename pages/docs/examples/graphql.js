@@ -163,7 +163,7 @@ To install it, run this [command](https://docs.npmjs.com/cli/install) in a separ
 
 ${
   <TerminalInput>
-    npm install --save react-apollo
+    npm install --save react-apollo apollo-client apollo-link-http apollo-cache-inmemory graphql-tag
   </TerminalInput>
 }
 
@@ -176,7 +176,10 @@ ${
     {`import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo'
+import ApolloClient from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloProvider } from 'react-apollo'
 
 import App from './App'`}
   </Code>
@@ -187,9 +190,10 @@ Continue with creating an instance of \`ApolloClient\` and pointing it to your G
 ${
   <Code>
     {`const client = new ApolloClient({
-  networkInterface: createNetworkInterface({ uri: `}
+  link: new HttpLink({ uri: `}
     <P.B>'REPLACE_THIS_WITH_YOUR_API_URL'</P.B>
-    {` })
+    {` }),
+  cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
 })`}
   </Code>
 }
@@ -219,7 +223,8 @@ Open the \`App.js\` file inside the \`src\` directory, remove its content and st
 ${
   <Code>
     {`import React from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 `}
   </Code>
 }
