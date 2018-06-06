@@ -219,7 +219,8 @@ Open the \`App.js\` file inside the \`src\` directory, remove its content and st
 ${
   <Code>
     {`import React from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 `}
   </Code>
 }
